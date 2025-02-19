@@ -13,7 +13,7 @@ class User:
         self.birthday = birthday
 
     def get_details(self):
-        return f"user {self.name} {self.surname} with user id: {self.user_id}"
+        return f"user {self.name} {self.surname} with email: {self.email}"
     def get_age(self):
         x = self.birthday.split('/')
         if datetime.now().month - int(x[0]) >= 0:
@@ -26,15 +26,15 @@ class UserService:
 
     @classmethod
     def add_user(cls, user):
-        cls.users[user.id] = user 
+        cls.users[user.user_id] = user 
     
     @classmethod
     def find_user(cls, user):
-        cls.users.get(user.id, "Not found")
+        cls.users.get(user.user_id, "Not found")
 
     @classmethod
-    def delete_user(cls,user):
-        cls.users.pop(user.id, "Not Found")
+    def delete_user(cls,user_id):
+        cls.users.pop(user_id, "Not Found")
 
     @classmethod
     def update_user(cls, user_id, name = None, id = None, birthday = None, surname = None):
